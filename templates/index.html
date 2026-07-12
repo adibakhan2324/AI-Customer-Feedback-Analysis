@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>AI Customer Feedback Analysis</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🤖 AI Customer Feedback Analysis System</h1>
+
+<h3>Deep Learning Based Sentiment Analysis</h3>
+
+<p>
+Analyze customer feedback using two Deep Learning models:
+<b>BERT Transformer</b> and
+<b>Bidirectional LSTM</b>.
+</p>
+
+<div class="features">
+
+✔ Sentiment Analysis
+
+✔ Confidence Score
+
+✔ Business Recommendation
+
+✔ Mixed Review Detection
+
+✔ BERT & LSTM Models
+
+</div>
+
+<br>
+
+        <form method="POST">
+
+            <textarea
+    name="review"
+    placeholder="Enter customer review here..."
+    required
+>{{ review }}</textarea>
+
+            <br><br>
+
+            <label><strong>Select AI Model</strong></label>
+
+            <br><br>
+
+            <input
+                type="radio"
+                name="model_type"
+                value="bert"
+                checked
+            >
+
+            <label>BERT</label>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <input
+                type="radio"
+                name="model_type"
+                value="lstm"
+            >
+
+            <label>LSTM</label>
+
+            <br><br>
+
+            <button type="submit">
+    Analyze using AI
+</button>
+
+&nbsp;&nbsp;
+
+<button type="button" onclick="window.location.href='/'">
+    Clear
+</button>
+
+        </form>
+
+        {% if prediction %}
+
+        <div class="result">
+
+            <h2>📊 Analysis Report</h2>
+
+            <p>{{ prediction|safe }}</p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <hr>
+
+<center>
+
+<p>
+AI Customer Feedback Analysis System
+<br>
+
+Deep Learning Project using BERT and Bi-LSTM
+
+</p>
+
+</center>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Large model files
+models/*.bin
+models/*.pt
+models/*.h5
+
+# Temporary files
+*.log
+
+# VS Code settings
+.vscode/
+
+# Models
+models/
+
+# Dataset
+dataset/
+
+# Personal testing data
+history.json
+stats.json

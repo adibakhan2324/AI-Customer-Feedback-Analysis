@@ -1,0 +1,3010 @@
+/* ===================================================
+   CustomerPulse AI Dashboard
+=================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(
+        135deg,
+        #081120,
+        #101d42,
+        #2b2f77
+    );
+
+    color:white;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+}
+
+.background{
+
+    position:fixed;
+
+    width:100%;
+    height:100%;
+
+    top:0;
+    left:0;
+
+    background:
+    radial-gradient(circle at top left,#5c7cff33,transparent 40%),
+    radial-gradient(circle at bottom right,#7c3aed33,transparent 40%);
+
+    z-index:-1;
+
+}
+
+.main-container{
+
+    width:95%;
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:30px;
+
+}
+
+/* ================= HEADER ================= */
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:50px;
+
+}
+
+.logo h1{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:white;
+
+}
+
+.logo p{
+
+    color:#cbd5e1;
+
+    margin-top:8px;
+
+}
+
+nav{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+nav a{
+
+    text-decoration:none;
+
+    color:white;
+
+    transition:.3s;
+
+    font-weight:500;
+
+}
+
+nav a:hover{
+
+    color:#8ab4ff;
+
+}
+
+/* ================= HERO ================= */
+
+.hero{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.hero h2{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+.hero p{
+
+    max-width:850px;
+
+    margin:auto;
+
+    color:#dbeafe;
+
+    line-height:1.8;
+
+    font-size:18px;
+
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:50px;
+
+}
+
+.card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.35);
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.45);
+
+}
+
+.card h3{
+
+    font-size:22px;
+
+    margin-bottom:18px;
+
+}
+
+.card h2{
+
+    font-size:42px;
+
+    color:#7dd3fc;
+
+}
+
+.card p{
+
+    color:#d1d5db;
+
+}
+
+/* ===================================================
+   CUSTOMERPULSE AI
+   PROFESSIONAL DASHBOARD CSS - PART 1
+=================================================== */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ---------- ROOT COLORS ---------- */
+
+:root{
+
+--bg1:#081229;
+--bg2:#0e1d45;
+--card:rgba(255,255,255,.08);
+
+--border:rgba(255,255,255,.18);
+
+--text:#ffffff;
+--sub:#c8d1e5;
+
+--blue:#4f7cff;
+--purple:#7c5cff;
+--cyan:#38d9ff;
+
+--success:#42d392;
+--danger:#ff5b6e;
+
+}
+
+
+/* ---------- BODY ---------- */
+
+body{
+
+margin:0;
+
+padding:0;
+
+font-family:'Poppins',sans-serif;
+
+background:
+linear-gradient(135deg,#071225,#12265b,#1d2f70);
+
+color:white;
+
+overflow-x:hidden;
+
+min-height:100vh;
+
+}
+
+
+/* Animated Background */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:700px;
+height:700px;
+
+background:#6d5efc;
+
+filter:blur(220px);
+
+opacity:.25;
+
+top:-200px;
+right:-200px;
+
+z-index:-2;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+width:600px;
+height:600px;
+
+background:#22d3ee;
+
+filter:blur(220px);
+
+opacity:.20;
+
+left:-200px;
+bottom:-150px;
+
+z-index:-2;
+
+}
+
+
+/* ---------- CONTAINER ---------- */
+
+.container{
+
+width:92%;
+
+max-width:1450px;
+
+margin:auto;
+
+}
+
+
+/* ---------- NAVBAR ---------- */
+
+.navbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:30px 0;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.logo h1{
+
+margin:0;
+
+font-size:55px;
+
+font-weight:700;
+
+}
+
+.logo p{
+
+margin-top:6px;
+
+color:#d4d8ea;
+
+font-size:20px;
+
+}
+
+.logo-icon{
+
+font-size:55px;
+
+}
+
+
+/* ---------- MENU ---------- */
+
+.nav-links{
+
+display:flex;
+
+gap:45px;
+
+}
+
+.nav-links a{
+
+text-decoration:none;
+
+color:white;
+
+font-size:18px;
+
+font-weight:500;
+
+transition:.35s;
+
+position:relative;
+
+}
+
+.nav-links a:hover{
+
+color:#67d2ff;
+
+}
+
+.nav-links a::after{
+
+content:"";
+
+position:absolute;
+
+bottom:-8px;
+
+left:0;
+
+width:0;
+
+height:3px;
+
+background:#67d2ff;
+
+transition:.4s;
+
+border-radius:50px;
+
+}
+
+.nav-links a:hover::after{
+
+width:100%;
+
+}
+
+
+/* ---------- HERO ---------- */
+
+.hero{
+
+text-align:center;
+
+padding:40px 0 70px;
+
+}
+
+.hero h2{
+
+font-size:64px;
+
+margin-bottom:25px;
+
+font-weight:800;
+
+line-height:1.2;
+
+}
+
+.hero p{
+
+width:80%;
+
+margin:auto;
+
+font-size:24px;
+
+line-height:1.8;
+
+color:#d7def5;
+
+}
+
+
+/* ---------- DASHBOARD CARDS ---------- */
+
+.dashboard{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:28px;
+
+margin-top:50px;
+
+margin-bottom:70px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.18);
+
+border-radius:24px;
+
+padding:35px;
+
+transition:.35s;
+
+box-shadow:
+
+0 20px 40px rgba(0,0,0,.25);
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:
+
+0 30px 55px rgba(0,0,0,.35);
+
+}
+
+.card h3{
+
+margin:0;
+
+font-size:34px;
+
+font-weight:700;
+
+}
+
+.card-value{
+
+margin-top:28px;
+
+font-size:72px;
+
+font-weight:800;
+
+background:linear-gradient(90deg,#55d8ff,#6d7cff);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.card-sub{
+
+margin-top:12px;
+
+font-size:22px;
+
+color:#cfd8f6;
+
+}
+
+
+/* ---------- GLASS PANEL ---------- */
+
+.glass{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border-radius:28px;
+
+border:1px solid rgba(255,255,255,.15);
+
+padding:35px;
+
+box-shadow:0 20px 45px rgba(0,0,0,.30);
+
+margin-bottom:50px;
+
+}
+
+
+/* ---------- SECTION TITLE ---------- */
+
+.section-title{
+
+font-size:42px;
+
+font-weight:700;
+
+margin-bottom:25px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.section-sub{
+
+color:#d2daf4;
+
+font-size:20px;
+
+margin-bottom:30px;
+
+}
+
+/* ==========================================
+   PROFESSIONAL REVIEW ANALYZER
+========================================== */
+
+.review-section{
+
+margin-top:30px;
+
+}
+
+.review-form{
+
+display:flex;
+
+flex-direction:column;
+
+gap:25px;
+
+}
+
+.review-form label{
+
+font-size:22px;
+
+font-weight:600;
+
+color:white;
+
+margin-bottom:8px;
+
+display:block;
+
+}
+
+.review-form textarea{
+
+width:100%;
+
+min-height:220px;
+
+resize:none;
+
+border:none;
+
+outline:none;
+
+border-radius:20px;
+
+padding:25px;
+
+font-size:18px;
+
+font-family:'Poppins',sans-serif;
+
+background:rgba(255,255,255,.08);
+
+color:white;
+
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,.15);
+
+transition:.35s;
+
+box-sizing:border-box;
+
+}
+
+.review-form textarea::placeholder{
+
+color:#b9c4e8;
+
+}
+
+.review-form textarea:focus{
+
+border:1px solid #61d7ff;
+
+box-shadow:
+
+0 0 25px rgba(97,215,255,.35);
+
+}
+
+
+/* ==============================
+   MODEL SELECTOR
+============================== */
+
+.model-box{
+
+display:flex;
+
+align-items:center;
+
+gap:30px;
+
+margin-top:5px;
+
+margin-bottom:10px;
+
+flex-wrap:wrap;
+
+}
+
+.model-box label{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+font-size:18px;
+
+cursor:pointer;
+
+margin:0;
+
+}
+
+.model-box input[type=radio]{
+
+transform:scale(1.3);
+
+accent-color:#5c8cff;
+
+}
+
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.button-group{
+
+display:flex;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+margin-top:10px;
+
+}
+
+.primary-btn{
+
+padding:18px 42px;
+
+font-size:18px;
+
+font-weight:600;
+
+border:none;
+
+border-radius:15px;
+
+cursor:pointer;
+
+color:white;
+
+background:
+
+linear-gradient(135deg,#4d7cff,#785cff);
+
+transition:.35s;
+
+box-shadow:
+
+0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.primary-btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 18px 35px rgba(0,0,0,.35);
+
+}
+
+.secondary-btn{
+
+padding:18px 42px;
+
+font-size:18px;
+
+font-weight:600;
+
+border:none;
+
+border-radius:15px;
+
+cursor:pointer;
+
+background:rgba(255,255,255,.10);
+
+color:white;
+
+transition:.35s;
+
+}
+
+.secondary-btn:hover{
+
+background:rgba(255,255,255,.18);
+
+transform:translateY(-4px);
+
+}
+
+
+/* ==============================
+   RESULT PANEL
+============================== */
+
+.result-panel{
+
+margin-top:45px;
+
+background:rgba(255,255,255,.08);
+
+border-radius:24px;
+
+padding:35px;
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+
+0 18px 40px rgba(0,0,0,.25);
+
+animation:fadeUp .7s ease;
+
+}
+
+.result-panel h2{
+
+margin-top:0;
+
+font-size:34px;
+
+margin-bottom:25px;
+
+}
+
+.result-text{
+
+font-size:20px;
+
+line-height:1.9;
+
+color:#edf3ff;
+
+}
+
+
+/* ==============================
+   CONFIDENCE BAR
+============================== */
+
+.progress{
+
+width:100%;
+
+height:18px;
+
+border-radius:100px;
+
+background:rgba(255,255,255,.08);
+
+overflow:hidden;
+
+margin-top:18px;
+
+margin-bottom:15px;
+
+}
+
+.progress-fill{
+
+height:100%;
+
+width:91%;
+
+background:
+
+linear-gradient(90deg,#35d9ff,#4d7cff,#785cff);
+
+border-radius:100px;
+
+animation:growBar 2s ease;
+
+}
+
+
+/* ==============================
+   BUSINESS CARD
+============================== */
+
+.business-card{
+
+margin-top:30px;
+
+padding:28px;
+
+border-radius:22px;
+
+background:rgba(255,255,255,.06);
+
+border-left:6px solid #35d9ff;
+
+}
+
+.business-card h3{
+
+margin-top:0;
+
+font-size:26px;
+
+margin-bottom:12px;
+
+}
+
+.business-card p{
+
+margin:0;
+
+font-size:18px;
+
+line-height:1.8;
+
+color:#dbe4ff;
+
+}
+
+
+/* ==============================
+   ANIMATIONS
+============================== */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes growBar{
+
+from{
+
+width:0;
+
+}
+
+to{
+
+width:91%;
+
+}
+
+}
+
+/* =====================================================
+   CUSTOMERPULSE AI
+   CSS PART 3
+===================================================== */
+
+/* ---------- LOADING SCREEN ---------- */
+
+#loadingScreen{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+flex-direction:column;
+
+background:rgba(4,12,34,.95);
+
+backdrop-filter:blur(15px);
+
+z-index:99999;
+
+animation:fadeIn .4s;
+
+}
+
+.loading-logo{
+
+font-size:75px;
+
+margin-bottom:20px;
+
+animation:floatAI 2s infinite ease-in-out;
+
+}
+
+.loading-title{
+
+font-size:42px;
+
+font-weight:700;
+
+color:white;
+
+margin-bottom:15px;
+
+}
+
+.loading-sub{
+
+font-size:20px;
+
+color:#c7d7ff;
+
+margin-bottom:35px;
+
+}
+
+
+/* ---------- AI BAR ---------- */
+
+.ai-progress{
+
+width:420px;
+
+height:16px;
+
+border-radius:50px;
+
+overflow:hidden;
+
+background:rgba(255,255,255,.08);
+
+margin-bottom:35px;
+
+}
+
+.ai-progress span{
+
+display:block;
+
+height:100%;
+
+width:100%;
+
+background:linear-gradient(
+90deg,
+#33d9ff,
+#5f7dff,
+#8b5cff);
+
+animation:loadingBar 1s linear;
+
+}
+
+
+/* ---------- LOADING STEPS ---------- */
+
+.loading-list{
+
+list-style:none;
+
+padding:0;
+
+margin:0;
+
+}
+
+.loading-list li{
+
+font-size:19px;
+
+padding:8px 0;
+
+color:white;
+
+opacity:.9;
+
+}
+
+
+/* ---------- FOOTER ---------- */
+
+footer{
+
+margin-top:80px;
+
+padding:40px 0;
+
+text-align:center;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+color:#cfd7f5;
+
+font-size:18px;
+
+}
+
+footer h3{
+
+margin-bottom:15px;
+
+font-size:32px;
+
+}
+
+footer p{
+
+font-size:18px;
+
+line-height:1.8;
+
+}
+
+
+/* ---------- SCROLLBAR ---------- */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#08152d;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#4d7cff;
+
+border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#63d7ff;
+
+}
+
+
+/* ---------- FLOATING GLOW ---------- */
+
+.glow{
+
+position:absolute;
+
+width:280px;
+
+height:280px;
+
+border-radius:50%;
+
+background:#5a68ff;
+
+filter:blur(170px);
+
+opacity:.20;
+
+z-index:-1;
+
+animation:moveGlow 10s infinite alternate;
+
+}
+
+
+/* ---------- HOVER EFFECTS ---------- */
+
+.card:hover{
+
+transform:translateY(-10px) scale(1.02);
+
+}
+
+.primary-btn:hover{
+
+transform:translateY(-5px);
+
+}
+
+.secondary-btn:hover{
+
+transform:translateY(-5px);
+
+}
+
+textarea:hover{
+
+box-shadow:0 0 20px rgba(95,125,255,.25);
+
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:1200px){
+
+.dashboard{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.hero h2{
+
+font-size:48px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.dashboard{
+
+grid-template-columns:1fr;
+
+}
+
+.hero h2{
+
+font-size:36px;
+
+}
+
+.hero p{
+
+width:95%;
+
+font-size:18px;
+
+}
+
+.logo h1{
+
+font-size:36px;
+
+}
+
+.nav-links{
+
+display:none;
+
+}
+
+.button-group{
+
+flex-direction:column;
+
+}
+
+.ai-progress{
+
+width:90%;
+
+}
+
+.loading-title{
+
+font-size:28px;
+
+}
+
+.loading-sub{
+
+font-size:16px;
+
+}
+
+}
+
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes loadingBar{
+
+0%{
+
+width:0;
+
+}
+
+100%{
+
+width:100%;
+
+}
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+@keyframes floatAI{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes moveGlow{
+
+0%{
+
+transform:translate(0,0);
+
+}
+
+100%{
+
+transform:translate(180px,-120px);
+
+}
+
+}
+
+.model-card{
+
+    margin-top:30px;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+
+    transition:.3s;
+}
+
+.model-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.45);
+}
+
+.model-card h2{
+
+    color:#69b7ff;
+
+    margin-bottom:15px;
+
+    text-align:center;
+}
+
+/* ===========================
+   AI Dashboard Cards
+=========================== */
+
+.stat-card{
+    background: rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(18px);
+    border-radius:22px;
+    padding:30px;
+    transition:.35s;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.stat-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.45);
+}
+
+.stat-card h3{
+    color:white;
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.stat-card h2{
+    color:#66d9ff;
+    font-size:48px;
+    margin:15px 0;
+    font-weight:700;
+}
+
+.card-title{
+    color:#bfc9d9;
+    font-size:17px;
+    margin-top:18px;
+}
+
+/* Progress Bar */
+
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:#2d3655;
+    border-radius:30px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.progress-fill{
+    height:100%;
+    border-radius:30px;
+    animation:grow 2s ease;
+}
+
+@keyframes grow{
+
+    from{
+        width:0%;
+    }
+
+}
+
+/* BERT */
+
+.bert-fill{
+    width:94%;
+    background:linear-gradient(90deg,#00c6ff,#0072ff);
+}
+
+/* LSTM */
+
+.lstm-fill{
+    width:87%;
+    background:linear-gradient(90deg,#9b5cff,#d946ef);
+}
+
+/* Speed */
+
+.speed-fill{
+    width:96%;
+    background:linear-gradient(90deg,#00d084,#00ff99);
+}
+
+/* Confidence */
+
+.confidence-fill{
+    width:95%;
+    background:linear-gradient(90deg,#ffd54f,#ff9800);
+}
+
+/* Individual Card Glow */
+
+.bert-card{
+    border:1px solid #2196f3;
+}
+
+.lstm-card{
+    border:1px solid #b84dff;
+}
+
+.speed-card{
+    border:1px solid #00e676;
+}
+
+.confidence-card{
+    border:1px solid #ffc107;
+}
+
+/* =================================
+   Review Analysis Glass Card
+================================= */
+
+.review-card{
+
+    margin-top:60px;
+    padding:40px;
+
+    background:rgba(255,255,255,0.06);
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,0.18);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.35);
+
+    animation:fadeIn 0.8s ease;
+
+}
+
+
+/* Heading */
+
+.review-card h2{
+
+    color:white;
+
+    font-size:32px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+/* Text Area */
+
+.review-card textarea{
+
+    width:100%;
+
+    height:150px;
+
+    padding:20px;
+
+    resize:none;
+
+
+    background:rgba(0,0,0,0.25);
+
+
+    border-radius:18px;
+
+
+    border:1px solid rgba(255,255,255,0.2);
+
+
+    color:white;
+
+
+    font-size:17px;
+
+
+    outline:none;
+
+}
+
+
+
+.review-card textarea::placeholder{
+
+    color:#cbd5e1;
+
+}
+
+
+
+/* Model Selection */
+
+.model-selection{
+
+    display:flex;
+
+    gap:30px;
+
+    margin:25px 0;
+
+}
+
+
+.model-selection label{
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
+
+
+
+.model-selection input{
+
+    accent-color:#66d9ff;
+
+}
+
+
+
+/* Buttons */
+
+.button-group{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+
+
+.analyze-btn,
+.clear-btn{
+
+
+    padding:14px 30px;
+
+
+    border-radius:15px;
+
+
+    border:none;
+
+
+    font-size:16px;
+
+
+    cursor:pointer;
+
+
+    font-weight:600;
+
+
+    transition:0.3s;
+
+}
+
+
+
+/* Analyze Button */
+
+.analyze-btn{
+
+    background:linear-gradient(
+        135deg,
+        #00c6ff,
+        #0072ff
+    );
+
+
+    color:white;
+
+}
+
+
+
+.analyze-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 10px 25px rgba(0,198,255,0.5);
+
+}
+
+
+
+/* Clear Button */
+
+.clear-btn{
+
+    background:rgba(255,255,255,0.12);
+
+    color:white;
+
+}
+
+
+
+.clear-btn:hover{
+
+    background:rgba(255,255,255,0.25);
+
+}
+
+
+
+/* Prediction Result */
+
+.prediction-box{
+
+    margin-top:35px;
+
+
+    padding:25px;
+
+
+    border-radius:20px;
+
+
+    background:rgba(255,255,255,0.08);
+
+
+    color:white;
+
+
+    font-size:18px;
+
+
+}
+
+
+
+/* Animation */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =================================
+   Final AI Decision Dashboard
+================================= */
+
+
+.result-card{
+
+    margin-top:50px;
+
+    padding:35px;
+
+    background:
+    rgba(255,255,255,0.06);
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,0.18);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.35);
+
+}
+
+
+
+.result-card h2{
+
+    color:white;
+
+    font-size:32px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.result-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+
+
+/* Individual Cards */
+
+
+.info-card{
+
+    padding:25px;
+
+
+    background:
+    rgba(255,255,255,0.08);
+
+
+    border-radius:20px;
+
+
+    border:1px solid rgba(255,255,255,0.15);
+
+
+    transition:.3s;
+
+}
+
+
+
+.info-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+
+
+/* Card Heading */
+
+
+.info-card h3{
+
+    color:white;
+
+    font-size:22px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+/* Sentiment */
+
+
+.sentiment-card{
+
+    border-left:5px solid #00ff88;
+
+}
+
+
+
+.sentiment-result{
+
+    color:white;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+
+
+/* Confidence */
+
+
+.confidence-card{
+
+    border-left:5px solid #00c6ff;
+
+}
+
+
+
+.confidence-bar{
+
+    height:14px;
+
+    width:100%;
+
+    background:
+    rgba(255,255,255,0.15);
+
+
+    border-radius:20px;
+
+
+    overflow:hidden;
+
+}
+
+
+
+.confidence-fill{
+
+    height:100%;
+
+    width:94%;
+
+
+    background:
+    linear-gradient(
+    90deg,
+    #00ff88,
+    #00c6ff
+    );
+
+
+    border-radius:20px;
+
+
+    animation:
+    loadBar 1.5s ease;
+
+}
+
+
+
+@keyframes loadBar{
+
+
+from{
+
+width:0%;
+
+}
+
+
+to{
+
+width:94%;
+
+}
+
+
+}
+
+
+
+/* Recommendation */
+
+
+.info-card:nth-child(3){
+
+    border-left:5px solid #ffd43b;
+
+}
+
+
+
+/* Warning */
+
+
+.info-card:nth-child(4){
+
+    border-left:5px solid #ff6b6b;
+
+}
+
+
+
+/* Mobile Responsive */
+
+
+@media(max-width:900px){
+
+
+.result-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+.language-card{
+
+    border:1px solid rgba(102,217,255,0.4);
+
+}
+
+
+.language-result{
+
+    margin-top:15px;
+
+    color:white;
+
+    line-height:1.8;
+
+    font-size:16px;
+
+}
+
+/* ===========================
+   AI Language Analysis Card
+=========================== */
+
+.language-card{
+
+    border:1px solid rgba(102,217,255,0.5);
+
+}
+
+
+.language-result{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    background:rgba(255,255,255,0.06);
+
+    border-radius:18px;
+
+    color:white;
+
+    font-size:16px;
+
+    line-height:2;
+
+}
+
+
+.language-result br{
+
+    display:block;
+
+    margin-bottom:8px;
+
+}
+
+/* ==================================
+   AI Model Performance Dashboard
+================================== */
+
+
+.model-performance{
+
+    margin-top:50px;
+
+    padding:35px;
+
+    background:
+    rgba(255,255,255,0.06);
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,0.18);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.35);
+
+}
+
+
+
+.model-performance h2{
+
+    color:white;
+
+    font-size:32px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+/* Model Grid */
+
+.model-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:30px;
+
+}
+
+
+
+/* Individual Model Cards */
+
+.model-card{
+
+    padding:30px;
+
+
+    border-radius:22px;
+
+
+    background:
+    rgba(255,255,255,0.08);
+
+
+    color:white;
+
+
+    transition:.35s;
+
+
+    border:1px solid rgba(255,255,255,0.15);
+
+}
+
+
+
+.model-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+
+/* BERT Card */
+
+.bert-card{
+
+    border-left:5px solid #00c6ff;
+
+}
+
+
+
+/* LSTM Card */
+
+.lstm-card{
+
+    border-left:5px solid #ff9f43;
+
+}
+
+
+
+
+.model-card h3{
+
+    font-size:26px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.model-card p{
+
+    font-size:17px;
+
+    margin:12px 0;
+
+}
+
+
+
+/* Progress Bar */
+
+
+.model-progress{
+
+    width:100%;
+
+    height:14px;
+
+    background:
+    rgba(255,255,255,0.15);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:25px;
+
+}
+
+
+
+.bert-progress{
+
+    height:100%;
+
+    width:93.8%;
+
+    background:
+    linear-gradient(
+    90deg,
+    #00c6ff,
+    #0072ff
+    );
+
+    border-radius:20px;
+
+}
+
+
+
+.lstm-progress{
+
+    height:100%;
+
+    width:89.6%;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ff9f43,
+    #ff6b6b
+    );
+
+    border-radius:20px;
+
+}
+
+
+
+/* Mobile */
+
+@media(max-width:900px){
+
+    .model-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/* ==========================
+   Best Model Card
+=========================== */
+
+.best-model,
+.comparison-card {
+
+    background: rgba(255,255,255,0.08);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    margin: 25px 0;
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+
+    transition: 0.3s ease;
+}
+
+
+.best-model:hover,
+.comparison-card:hover {
+
+    transform: translateY(-6px);
+
+}
+
+
+/* Best Model Heading */
+
+.best-model h3 {
+
+    font-size: 28px;
+
+    color: #66d9ff;
+
+}
+
+
+/* Comparison Text */
+
+.comparison-card h3 {
+
+    color: white;
+
+    font-size: 22px;
+
+}
+
+
+.comparison-card p {
+
+    color: #cfd8e3;
+
+    font-size: 17px;
+
+}
+
+/* ==========================
+   AI Model Color Cards
+=========================== */
+
+.bert-card {
+
+    border: 2px solid #00c6ff;
+
+    box-shadow:
+    0 0 20px rgba(0,198,255,0.35);
+
+}
+
+
+.lstm-card {
+
+    border: 2px solid #b36bff;
+
+    box-shadow:
+    0 0 20px rgba(179,107,255,0.35);
+
+}
+
+
+/* Hover Effect */
+
+.bert-card:hover {
+
+    box-shadow:
+    0 0 35px rgba(0,198,255,0.7);
+
+}
+
+
+.lstm-card:hover {
+
+    box-shadow:
+    0 0 35px rgba(179,107,255,0.7);
+
+}
+
+/* ==========================
+   Animated Confidence Bars
+=========================== */
+
+
+.model-progress {
+
+    height: 12px;
+
+    background: rgba(255,255,255,0.15);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-top: 20px;
+
+}
+
+
+
+.bert-progress,
+.lstm-progress {
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    animation: fillBar 1.5s ease-in-out;
+
+}
+
+
+
+.bert-progress {
+
+    background: linear-gradient(
+        90deg,
+        #00c6ff,
+        #0072ff
+    );
+
+}
+
+
+
+.lstm-progress {
+
+    background: linear-gradient(
+        90deg,
+        #b36bff,
+        #7b2cff
+    );
+
+}
+
+
+
+@keyframes fillBar {
+
+    from {
+
+        width: 0%;
+
+    }
+
+    to {
+
+        width: inherit;
+
+    }
+
+}
+
+/* ==========================
+   Dashboard Header
+=========================== */
+
+
+.dashboard-header {
+
+    text-align: center;
+
+    padding: 35px;
+
+    margin-bottom: 30px;
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(15px);
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+
+}
+
+
+.dashboard-header h1 {
+
+    color: #66d9ff;
+
+    font-size: 38px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.dashboard-header p {
+
+    color: white;
+
+    font-size: 20px;
+
+}
+
+
+.dashboard-header .subtitle {
+
+    color: #bfc9d9;
+
+    font-size: 16px;
+
+}
+
+/* ==========================
+   Statistics Cards
+=========================== */
+
+
+.stats-container {
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.stat-card {
+
+    background:
+    rgba(255,255,255,0.08);
+
+    backdrop-filter:
+    blur(15px);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    text-align:center;
+
+    border:
+    1px solid rgba(255,255,255,0.15);
+
+    transition:.3s;
+
+}
+
+
+
+.stat-card:hover {
+
+    transform:translateY(-8px);
+
+}
+
+
+
+.stat-card h3 {
+
+    color:#bfc9d9;
+
+}
+
+
+
+.stat-card h2 {
+
+    color:#66d9ff;
+
+    font-size:42px;
+
+}
+
+
+
+.stat-card p {
+
+    color:white;
+
+}
+
+/* ==========================
+   Statistics Cards
+=========================== */
+
+
+.stats-container {
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.stat-card {
+
+    background:
+    rgba(255,255,255,0.08);
+
+    backdrop-filter:
+    blur(15px);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    text-align:center;
+
+    border:
+    1px solid rgba(255,255,255,0.15);
+
+    transition:.3s;
+
+}
+
+
+
+.stat-card:hover {
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.35);
+
+}
+
+
+
+.stat-card h3 {
+
+    color:#bfc9d9;
+
+    font-size:18px;
+
+}
+
+
+
+.stat-card h2 {
+
+    color:#66d9ff;
+
+    font-size:42px;
+
+    margin:15px 0;
+
+}
+
+
+
+.stat-card p {
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+   Sentiment Chart Styling
+=========================== */
+
+.chart-card {
+
+    margin-top: 35px;
+    padding: 30px;
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(15px);
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+}
+
+
+.chart-card h2 {
+
+    text-align: center;
+
+    color: white;
+
+    margin-bottom: 25px;
+
+}
+
+
+#sentimentChart {
+
+    width: 350px !important;
+
+    height: 350px !important;
+
+    margin: auto;
+
+    display: block;
+
+}
+
+/* ==========================
+   Review History Table
+=========================== */
+
+.history-card{
+
+    margin-top:35px;
+
+    padding:30px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    overflow-x:auto;
+
+}
+
+
+.history-card h2{
+
+    text-align:center;
+
+    color:white;
+
+    margin-bottom:25px;
+
+}
+
+
+.history-card table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    color:white;
+
+}
+
+
+.history-card th{
+
+    padding:15px;
+
+    background:rgba(255,255,255,0.15);
+
+    text-align:left;
+
+}
+
+
+.history-card td{
+
+    padding:15px;
+
+    border-bottom:1px solid rgba(255,255,255,0.1);
+
+}
+
+
+.history-card tr:hover{
+
+    background:rgba(255,255,255,0.08);
+
+}
+
+/* ==========================
+   Dashboard Animations
+=========================== */
+
+
+.model-card,
+.chart-card,
+.history-card,
+.comparison-card,
+.info-card {
+
+    animation: fadeInUp 0.8s ease;
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+}
+
+
+/* Hover Effect */
+
+.model-card:hover,
+.chart-card:hover,
+.history-card:hover,
+.comparison-card:hover,
+.info-card:hover {
+
+    transform: translateY(-8px);
+
+}
+
+
+/* Fade Animation */
+
+@keyframes fadeInUp {
+
+
+    from {
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================
+   Final Dashboard Cleanup
+========================== */
+
+
+/* Section spacing */
+
+section {
+
+    margin-bottom: 35px;
+
+}
+
+
+/* Main headings */
+
+h1,
+h2 {
+
+    letter-spacing: 1px;
+
+}
+
+
+/* Improve table readability */
+
+.history-card table {
+
+    border-radius: 15px;
+
+    overflow:hidden;
+
+}
+
+
+/* Better text wrapping */
+
+.history-card td:first-child {
+
+    max-width:400px;
+
+    word-wrap:break-word;
+
+}
+
+
+/* Smooth page loading */
+
+body {
+
+    animation: pageLoad 0.6s ease;
+
+}
+
+
+@keyframes pageLoad {
+
+
+    from {
+
+        opacity:0;
+
+    }
+
+
+    to {
+
+        opacity:1;
+
+    }
+
+}
+
+/* ==========================
+   ABOUT SECTION
+========================== */
+
+
+.about-section{
+
+padding:40px;
+
+margin-top:50px;
+
+}
+
+
+
+.about-section h2{
+
+font-size:36px;
+
+margin-bottom:30px;
+
+}
+
+
+
+.about-grid{
+
+display:grid;
+
+grid-template-columns: repeat(2,1fr);
+
+gap:30px;
+
+}
+
+
+
+.about-card{
+
+background:rgba(255,255,255,0.08);
+
+border:1px solid rgba(255,255,255,0.15);
+
+border-radius:20px;
+
+padding:30px;
+
+backdrop-filter:blur(10px);
+
+}
+
+
+
+.about-card h3{
+
+font-size:24px;
+
+margin-bottom:15px;
+
+}
+
+
+
+.about-card p{
+
+font-size:17px;
+
+line-height:1.8;
+
+color:#e5e9ff;
+
+}
+
+
+
+.about-card ul{
+
+padding-left:20px;
+
+}
+
+
+
+.about-card li{
+
+margin:12px 0;
+
+font-size:17px;
+
+color:#e5e9ff;
+
+}
+
+
+
+@media(max-width:900px){
+
+.about-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}

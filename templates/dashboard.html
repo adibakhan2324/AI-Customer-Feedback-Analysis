@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CustomerPulse AI | Intelligent Feedback Analysis Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ==========================
+     Dashboard Header
+=========================== -->
+
+<header class="dashboard-header">
+
+<h1>
+🤖 AI Customer Feedback Analysis System
+</h1>
+
+<p>
+BERT + Bi-LSTM Sentiment Intelligence Dashboard
+</p>
+
+<p class="subtitle">
+Analyze customer feedback using Deep Learning and NLP
+</p>
+
+</header>
+
+<!-- ==========================
+     Dashboard Statistics
+=========================== -->
+
+<section id="analytics" class="stats-container">
+
+
+<div class="stat-card">
+
+<h3>
+📝 Reviews Analyzed
+</h3>
+
+<h2>
+{{total_reviews}}
+</h2>
+
+<p>
+Customer Feedback Records
+</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<h3>
+🤖 AI Models Used
+</h3>
+
+<h2>
+2
+</h2>
+
+<p>
+BERT + Bi-LSTM
+</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<h3>
+😊 Positive Reviews
+</h3>
+
+<h2>
+{{positive_reviews}}
+</h2>
+
+<p>
+Customer Satisfaction
+</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<h3>
+😞 Negative Reviews
+</h3>
+
+<h2>
+{{negative_reviews}}
+</h2>
+
+<p>
+Improvement Required
+</p>
+
+</div>
+
+
+</section>
+
+<div class="background"></div>
+
+<div class="main-container">
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+<div class="logo">
+
+<h1>🤖 CustomerPulse AI</h1>
+
+<p>Intelligent Feedback Analysis Dashboard</p>
+
+</div>
+
+<nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#analytics">Analytics</a>
+    <a href="#models">Models</a>
+    <a href="#about">About</a>
+</nav>
+
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<h2>AI Powered Customer Sentiment Analysis</h2>
+
+<p>
+
+Analyze customer reviews using
+<strong>BERT</strong> and
+<strong>Bi-LSTM</strong> models with confidence scores,
+business recommendations and intelligent insights.
+
+</p>
+
+</section>
+
+<!-- ================= DASHBOARD CARDS ================= -->
+
+<section class="dashboard">
+
+<div class="stat-card bert-card">
+    <h3>🤖 BERT AI</h3>
+
+    <p class="card-title">Model Accuracy</p>
+    <h2>93.8%</h2>
+
+    <p class="card-title">Prediction Confidence</p>
+    <div class="progress-bar">
+        <div class="progress-fill bert-fill"></div>
+    </div>
+    <span>94%</span>
+</div>
+
+<div class="stat-card lstm-card">
+    <h3>🧠 Bi-LSTM</h3>
+
+    <p class="card-title">Model Accuracy</p>
+    <h2>89.6%</h2>
+
+    <p class="card-title">Prediction Confidence</p>
+    <div class="progress-bar">
+        <div class="progress-fill lstm-fill"></div>
+    </div>
+    <span>87%</span>
+</div>
+
+<div class="stat-card speed-card">
+    <h3>⚡ Prediction Speed</h3>
+
+    <h2>0.12 s</h2>
+
+    <p>Average Response Time</p>
+
+    <div class="progress-bar">
+        <div class="progress-fill speed-fill"></div>
+    </div>
+
+    <span>Fast</span>
+</div>
+
+<div class="stat-card confidence-card">
+    <h3>🎯 Confidence Level</h3>
+
+    <h2>High</h2>
+
+    <p>AI Reliability</p>
+
+    <div class="progress-bar">
+        <div class="progress-fill confidence-fill"></div>
+    </div>
+
+    <span>95%</span>
+</div>
+
+</section>
+
+<!-- ==============================
+     Review Analysis Section
+=============================== -->
+
+<div class="review-card">
+
+    <h2>
+        📝 Analyze Customer Review
+    </h2>
+
+    <form method="POST">
+
+        <textarea 
+        name="review"
+        placeholder="Enter customer review here..."
+        required>{{review}}</textarea>
+
+
+        <div class="model-selection">
+
+            <label>
+                <input 
+                type="radio" 
+                name="model_type" 
+                value="bert"
+                checked>
+
+                🤖 BERT AI
+            </label>
+
+
+            <label>
+                <input 
+                type="radio" 
+                name="model_type" 
+                value="lstm">
+
+                🧠 Bi-LSTM
+            </label>
+
+        </div>
+
+
+        <div class="button-group">
+
+            <button class="analyze-btn">
+                🚀 Analyze Review
+            </button>
+
+
+            <button 
+                type="button"
+                class="clear-btn"
+                onclick="clearReview()">
+
+                🗑 Clear
+
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+    <div class="prediction-box">
+
+        {{prediction | safe}}
+
+    </div>
+
+
+</div>
+
+<!-- ================= LOADING SCREEN ================= -->
+
+<div id="loadingScreen">
+
+    <div class="loader-card">
+
+        <div class="loader-icon">
+            🤖
+        </div>
+
+        <h2>CustomerPulse AI</h2>
+
+        <p>Initializing AI Models...</p>
+
+        <div class="progress">
+
+            <div class="progress-bar"></div>
+
+        </div>
+
+        <div class="loading-text">
+
+            <p>✔ Loading BERT Transformer</p>
+
+            <p>✔ Loading Bi-LSTM Network</p>
+
+            <p>✔ Analyzing Customer Review</p>
+
+            <p>✔ Generating Business Insights</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= RESULT SECTION ================= -->
+
+{% if prediction %}
+
+<section id="dashboard" class="glass-card result-card">
+
+<h2>
+🤖 Final AI Decision Dashboard
+</h2>
+
+<div class="result-grid">
+
+<div class="info-card sentiment-card">
+
+<h3>😊 Sentiment Result</h3>
+
+<div class="sentiment-result">
+
+{{ prediction|safe }}
+
+</div>
+
+</div>
+
+<div class="info-card language-card">
+
+<h3>🧠 AI Language Analysis</h3>
+
+<div class="language-result">
+
+{{ analysis_text|safe }}
+
+</div>
+
+</div>
+
+<div class="info-card">
+
+<h3>📊 AI Business Report</h3>
+
+<div class="business-report-result">
+
+{{ business_report | safe }}
+
+</div>
+
+</div>
+
+<div class="info-card confidence-card">
+
+<h3>🎯 AI Confidence</h3>
+
+
+<div class="confidence-bar">
+
+<div 
+class="confidence-fill"
+style="width: {{ confidence }}%;">
+</div>
+
+</div>
+
+
+<p>
+Model prediction reliability
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>💼 Business Recommendation</h3>
+
+<div class="recommendation-box">
+{{ recommendation_text | safe }}
+</div>
+
+
+</div>
+
+<div class="info-card">
+
+<h3>⚠ Mixed Review Detection</h3>
+
+<p>
+
+Complex reviews may contain both positive and negative opinions.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+{% endif %}
+
+</div>
+
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+
+<!-- ==========================
+     AI Model Comparison
+=========================== -->
+
+<div class="best-model">
+
+<h3>
+{{best_model}}
+</h3>
+
+</div>
+
+<div class="comparison-card">
+
+<h3>
+📊 Model Comparison Summary
+</h3>
+
+<p>
+{{comparison_reason}}
+</p>
+
+</div>
+
+<section id="models" class="model-performance">
+
+
+<h2>
+🤖 AI Model Performance
+</h2>
+
+
+<div class="model-grid">
+
+
+<div class="model-card bert-card">
+
+<h3>
+🤖 BERT AI
+</h3>
+
+<p>
+Accuracy : <b>93.8%</b>
+</p>
+
+<p>
+Confidence : <b>{{bert_confidence|round(2)}}%</b>
+</p>
+
+<p>
+⚡ Speed : <b>{{bert_speed}} sec</b>
+</p>
+
+<div class="model-progress">
+
+<div 
+class="bert-progress"
+style="width: {{bert_confidence}}%;">
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="model-card lstm-card">
+
+<h3>
+🧠 Bi-LSTM
+</h3>
+
+<p>
+Accuracy : <b>89.6%</b>
+</p>
+
+<p>
+Confidence : <b>{{lstm_confidence|round(2)}}%</b>
+</p>
+
+<p>
+⚡ Speed : <b>{{lstm_speed}} sec</b>
+</p>
+
+
+<div class="model-progress">
+
+<div 
+class="lstm-progress"
+style="width: {{lstm_confidence}}%;">
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+<!-- ==========================
+     Sentiment Distribution
+=========================== -->
+
+<section class="chart-card">
+
+<h2>
+📊 Sentiment Distribution
+</h2>
+
+
+<canvas id="sentimentChart"></canvas>
+
+
+</section>
+
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+const ctx = document.getElementById('sentimentChart');
+
+
+new Chart(ctx, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            '😊 Positive Reviews',
+            '😞 Negative Reviews'
+        ],
+
+        datasets: [{
+
+            data: [
+
+                {{positive_reviews}},
+
+                {{negative_reviews}}
+
+            ]
+
+        }]
+
+    },
+
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+
+                position: 'bottom'
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+<!-- ==========================
+     Review History
+=========================== -->
+
+<section class="history-card">
+
+<h2>
+📋 Review Analysis History
+</h2>
+
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Review
+</th>
+
+<th>
+Sentiment
+</th>
+
+<th>
+Confidence
+</th>
+
+<th>
+Model
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+{% if history %}
+
+{% for item in history %}
+
+<tr>
+
+<td>
+{{item.review}}
+</td>
+
+<td>
+{{item.sentiment}}
+</td>
+
+<td>
+{{item.confidence}}%
+</td>
+
+<td>
+{{item.model}}
+</td>
+
+</tr>
+
+{% endfor %}
+
+
+{% else %}
+
+<tr>
+
+<td colspan="4" style="text-align:center;">
+
+📭 No reviews analyzed yet
+
+</td>
+
+</tr>
+
+{% endif %}
+
+
+</tbody>
+
+</table>
+
+
+</section>
+
+<section id="about" class="glass-card about-section">
+
+<h2>
+ℹ️ About CustomerPulse AI
+</h2>
+
+
+<div class="about-grid">
+
+
+<div class="about-card">
+
+<h3>🚀 Project Objective</h3>
+
+<p>
+CustomerPulse AI is an AI-based customer feedback analysis system
+that analyzes customer reviews and predicts sentiment using
+Deep Learning and Natural Language Processing techniques.
+</p>
+
+</div>
+
+
+
+<div class="about-card">
+
+<h3>🧠 AI Models Used</h3>
+
+<ul>
+
+<li>🤖 BERT (Transformer-based NLP Model)</li>
+
+<li>🧠 Bi-LSTM (Deep Learning Sequence Model)</li>
+
+<li>⚖ Hybrid Correction Layer for Mixed Sentiment Detection</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="about-card">
+
+<h3>🛠 Technology Stack</h3>
+
+<ul>
+
+<li>🐍 Python</li>
+
+<li>🌐 Flask Framework</li>
+
+<li>🔥 PyTorch</li>
+
+<li>🧠 TensorFlow / Keras</li>
+
+<li>📚 Natural Language Processing</li>
+
+<li>💻 HTML, CSS, JavaScript</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="about-card">
+
+<h3>✨ System Features</h3>
+
+<ul>
+
+<li>✅ Real-time Sentiment Prediction</li>
+
+<li>✅ BERT and Bi-LSTM Comparison</li>
+
+<li>✅ Confidence Score Analysis</li>
+
+<li>✅ AI Language Pattern Detection</li>
+
+<li>✅ Business Recommendation</li>
+
+<li>✅ Review History Tracking</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<p>
+
+© 2026 CustomerPulse AI
+
+|
+
+Intelligent Feedback Analysis Dashboard
+
+</p>
+
+</footer>
+
+<script>
+
+function clearReview(){
+
+    // Clear review textarea
+    const reviewBox = document.querySelector("textarea");
+
+    if(reviewBox){
+        reviewBox.value = "";
+    }
+
+
+    // Clear prediction result
+    const prediction = document.querySelector(".prediction-box");
+
+    if(prediction){
+        prediction.innerHTML = "";
+    }
+
+
+    // Clear AI language analysis if present
+    const analysis = document.querySelector(".language-result");
+
+    if(analysis){
+        analysis.innerHTML = "";
+    }
+
+
+    // Scroll back to review box
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>
