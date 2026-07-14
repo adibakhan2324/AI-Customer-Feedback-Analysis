@@ -524,6 +524,23 @@ Future improvements include:
 
 ---
 
+---
+
+# 📌 Repository Note
+
+This repository represents the complete implementation of the CustomerPulse AI system.
+
+Large files such as:
+- Trained deep learning model weights
+- Original datasets
+- Checkpoint files
+
+are excluded from the repository to maintain efficient version control and GitHub compatibility.
+
+The complete workflow, including preprocessing, model development, prediction pipeline, and dashboard implementation, is available through the provided source code.
+
+---
+
 # 👩‍💻 Author
 
 ## Adiba Khan
