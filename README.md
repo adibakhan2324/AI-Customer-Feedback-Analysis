@@ -1,7 +1,10 @@
 # 🤖 CustomerPulse AI  
 ## Intelligent Customer Feedback Analysis System Using Deep Learning and Natural Language Processing
 
-![AI Customer Feedback Analysis](screenshots/dashboard.png)
+---
+![AI Customer Feedback Analysis](screenshots/Home_Dashboard.png)
+
+---
 
 ## 📌 Project Overview
 
