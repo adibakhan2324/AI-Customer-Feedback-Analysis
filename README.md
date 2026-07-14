@@ -2,7 +2,8 @@
 ## Intelligent Customer Feedback Analysis System Using Deep Learning and Natural Language Processing
 
 ---
-![AI Customer Feedback Analysis](screenshots/Home_Dashboard.png)
+
+![AI Customer Feedback Analysis](screenshots/home_dashboard.png)
 
 ---
 
