@@ -32,5 +32,3 @@ h5py==3.12.1
 protobuf==5.28.3
 
 typing_extensions==4.12.2
-
-gunicorn
