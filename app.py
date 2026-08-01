@@ -159,13 +159,11 @@ print("✅ BERT model loaded successfully from Hugging Face")
 
 
 lstm_model = load_model(
-    "models/lstm_model.keras"
+    "model/lstm_model.keras"
 )
 
-
-
 with open(
-    "models/lstm_tokenizer.pkl",
+    "model/lstm_tokenizer.pkl",
     "rb"
 ) as file:
 
