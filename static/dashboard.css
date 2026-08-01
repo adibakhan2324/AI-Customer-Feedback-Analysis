@@ -3008,3 +3008,339 @@ grid-template-columns:1fr;
 }
 
 }
+
+/* ==========================================
+   MOBILE RESPONSIVE DESIGN
+   CustomerPulse AI
+========================================== */
+
+@media (max-width:768px){
+
+    body{
+        overflow-x:hidden;
+    }
+
+
+    .main-container{
+        width:100%;
+        padding:15px;
+    }
+
+
+    /* Header */
+
+    header,
+    .dashboard-header{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:20px;
+
+        padding:20px;
+
+    }
+
+
+    .logo h1,
+    .dashboard-header h1{
+
+        font-size:26px;
+
+    }
+
+
+    .dashboard-header p{
+
+        font-size:14px;
+
+    }
+
+
+
+    /* Navigation */
+
+    nav{
+
+        display:flex;
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:15px;
+
+    }
+
+
+    nav a{
+
+        font-size:14px;
+
+    }
+
+
+
+    /* Hero */
+
+    .hero h2{
+
+        font-size:30px;
+
+    }
+
+
+    .hero p{
+
+        width:100%;
+
+        font-size:16px;
+
+        line-height:1.6;
+
+    }
+
+
+
+    /* Statistics Cards */
+
+    .stats-container,
+    .dashboard{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+    }
+
+
+    .stat-card{
+
+        padding:20px;
+
+    }
+
+
+    .stat-card h2{
+
+        font-size:34px;
+
+    }
+
+
+
+    /* Review Card */
+
+    .review-card{
+
+        padding:20px;
+
+        margin-top:30px;
+
+    }
+
+
+    .review-card h2{
+
+        font-size:24px;
+
+    }
+
+
+    .review-card textarea{
+
+        height:140px;
+
+        font-size:15px;
+
+    }
+
+
+
+    /* Model Selection */
+
+    .model-selection{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+
+
+    /* Buttons */
+
+    .button-group{
+
+        flex-direction:column;
+
+    }
+
+
+    .analyze-btn,
+    .clear-btn{
+
+        width:100%;
+
+        padding:15px;
+
+    }
+
+
+
+    /* Result Cards */
+
+    .result-grid,
+    .model-grid,
+    .about-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .info-card,
+    .model-card,
+    .about-card{
+
+        padding:20px;
+
+    }
+
+
+
+    /* Chart */
+
+    #sentimentChart{
+
+        width:100% !important;
+
+        height:auto !important;
+
+    }
+
+
+
+    /* History Table */
+
+    .history-card{
+
+        overflow-x:auto;
+
+        padding:15px;
+
+    }
+
+
+    .history-card table{
+
+        min-width:600px;
+
+    }
+
+
+
+    /* Loading Screen */
+
+    .loader-card{
+
+        width:90%;
+
+        padding:20px;
+
+        text-align:center;
+
+    }
+
+
+    .loader-icon{
+
+        font-size:50px;
+
+    }
+
+
+    .loading-title{
+
+        font-size:24px;
+
+    }
+
+
+}
+
+
+
+/* Small phones */
+
+@media(max-width:400px){
+
+
+    .hero h2{
+
+        font-size:24px;
+
+    }
+
+
+    .dashboard-header h1{
+
+        font-size:22px;
+
+    }
+
+
+    .stat-card h2{
+
+        font-size:30px;
+
+    }
+
+
+}
+
+/* Mobile Navbar Fix */
+
+@media(max-width:768px){
+
+    nav{
+
+        display:flex !important;
+
+        flex-direction:row;
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:12px;
+
+        width:100%;
+
+    }
+
+
+    nav a{
+
+        display:block;
+
+        font-size:14px;
+
+        padding:8px 12px;
+
+        background:rgba(255,255,255,0.08);
+
+        border-radius:20px;
+
+    }
+
+
+    nav a:hover{
+
+        background:rgba(255,255,255,0.18);
+
+    }
+
+}

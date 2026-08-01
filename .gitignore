@@ -5,22 +5,19 @@
 __pycache__/
 *.pyc
 
-# Large model files
-models/*.bin
-models/*.pt
-models/*.h5
-
 # Temporary files
 *.log
 
 # VS Code settings
 .vscode/
 
-# Models
-models/
-
-# Dataset
+# Dataset (large)
 dataset/
+
+# Ignore unnecessary model formats
+models/*.bin
+models/*.pt
+models/*.h5
 
 # Personal testing data
 history.json
