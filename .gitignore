@@ -8,17 +8,15 @@ __pycache__/
 # Temporary files
 *.log
 
-# VS Code settings
+# VS Code
 .vscode/
 
-# Dataset (large)
+# Dataset
 dataset/
 
-# Ignore unnecessary model formats
-models/*.bin
-models/*.pt
-models/*.h5
+# AI Models
+models/
 
-# Personal testing data
+# Personal files
 history.json
 stats.json
