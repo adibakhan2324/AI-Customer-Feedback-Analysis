@@ -140,7 +140,7 @@ def save_history(history):
 # =====================================================
 
 
-HF_MODEL = "models/bert_model"
+HF_MODEL = "khanadiba263/customerpulse-bert-sentiment"
 
 tokenizer = BertTokenizer.from_pretrained(HF_MODEL)
 
