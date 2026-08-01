@@ -140,7 +140,7 @@ def save_history(history):
 # =====================================================
 
 
-HF_MODEL = "khanadiba263/customerpulse-bert-sentiment"
+HF_MODEL = "models/bert_model"
 
 tokenizer = BertTokenizer.from_pretrained(HF_MODEL)
 
@@ -158,23 +158,15 @@ print("✅ BERT model loaded successfully from Hugging Face")
 # =====================================================
 
 
-lstm_model = load_model(
-    "model/lstm_model.keras"
-)
+lstm_model = load_model("models/lstm_model.keras")
 
 with open(
-    "model/lstm_tokenizer.pkl",
+    "models/lstm_tokenizer.pkl",
     "rb"
 ) as file:
-
-
     lstm_tokenizer = pickle.load(file)
 
-
-
 print("✅ Bi-LSTM model loaded successfully")
-
-
 
 
 
