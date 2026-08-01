@@ -140,21 +140,15 @@ def save_history(history):
 # =====================================================
 
 
-tokenizer = BertTokenizer.from_pretrained(
-    "models/bert_model"
-)
+HF_MODEL = "khanadiba263/customerpulse-bert-sentiment"
 
+tokenizer = BertTokenizer.from_pretrained(HF_MODEL)
 
-bert_model = BertForSequenceClassification.from_pretrained(
-    "models/bert_model"
-)
-
+bert_model = BertForSequenceClassification.from_pretrained(HF_MODEL)
 
 bert_model.eval()
 
-
-
-print("✅ BERT model loaded successfully")
+print("✅ BERT model loaded successfully from Hugging Face")
 
 
 
@@ -1630,6 +1624,7 @@ def home():
 
 
 if __name__ == "__main__":
+    import os
 
-
-    app.run()
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port, debug=False)
