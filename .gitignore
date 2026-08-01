@@ -14,9 +14,6 @@ __pycache__/
 # Dataset
 dataset/
 
-# AI Models
-models/
-
 # Personal files
 history.json
 stats.json
