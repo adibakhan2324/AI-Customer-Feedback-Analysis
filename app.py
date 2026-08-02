@@ -25,6 +25,7 @@ except LookupError:
 
 
 import torch
+torch.set_num_threads(1)
 import torch.nn.functional as F
 
 from nltk.corpus import stopwords
@@ -183,9 +184,11 @@ def get_bert():
         )
 
         bert_model = BertForSequenceClassification.from_pretrained(
-            HF_MODEL
-        )
+            HF_MODEL,
+            torch_dtype=torch.float32
+       )
 
+        bert_model.to("cpu")
         bert_model.eval()
 
         print("✅ BERT Loaded Successfully")
@@ -209,9 +212,9 @@ def get_lstm():
         print("Loading Bi-LSTM Model...")
 
         lstm_model = load_model(
-            "models/lstm_model.keras",
+            "models/lstm_model.h5",
             compile=False
-        )
+       )
 
         with open(
             "models/lstm_tokenizer.pkl",
