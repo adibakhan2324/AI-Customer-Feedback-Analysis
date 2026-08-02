@@ -51,6 +51,9 @@ from business_report import generate_business_report
 lstm_model = None
 lstm_tokenizer = None
 
+tokenizer = None
+bert_model = None
+
 # =====================================================
 # CustomerPulse AI
 # Flask Application
