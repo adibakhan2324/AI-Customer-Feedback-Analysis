@@ -1,41 +1,27 @@
 from flask import Flask, render_template, request
 
-import torch
-import torch.nn.functional as F
-
 import pickle
 import time
 import re
 import json
 import os
 
+import torch
+import torch.nn.functional as F
 
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
-
-from transformers import (
-    BertTokenizer,
-    BertForSequenceClassification
-)
-
-
-from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-
 
 from language_rules import (
     POSITIVE_EMOJIS,
     NEGATIVE_EMOJIS
 )
 
-
 from business_recommendation import generate_recommendation
-
 from customer_issue_detection import detect_customer_issues
-
 from business_report import generate_business_report
-
 
 
 # =====================================================
@@ -136,38 +122,81 @@ def save_history(history):
 
 
 # =====================================================
-# Load BERT Model
+# AI Model Configuration
 # =====================================================
-
 
 HF_MODEL = "khanadiba263/customerpulse-bert-sentiment"
 
-tokenizer = BertTokenizer.from_pretrained(HF_MODEL)
+# Lazy Loaded Models
 
-bert_model = BertForSequenceClassification.from_pretrained(HF_MODEL)
+tokenizer = None
+bert_model = None
 
-bert_model.eval()
-
-print("✅ BERT model loaded successfully from Hugging Face")
-
-
+lstm_model = None
+lstm_tokenizer = None
 
 
 # =====================================================
-# Load Bi-LSTM Model
+# Load BERT Only When Needed
 # =====================================================
 
+def get_bert():
 
-lstm_model = load_model("models/lstm_model.keras")
+    from transformers import (
+        BertTokenizer,
+        BertForSequenceClassification
+    )
 
-with open(
-    "models/lstm_tokenizer.pkl",
-    "rb"
-) as file:
-    lstm_tokenizer = pickle.load(file)
+    global tokenizer
+    global bert_model
 
-print("✅ Bi-LSTM model loaded successfully")
+    if bert_model is None:
 
+        print("Loading BERT Model...")
+
+        tokenizer = BertTokenizer.from_pretrained(
+            HF_MODEL
+        )
+
+        bert_model = BertForSequenceClassification.from_pretrained(
+            HF_MODEL
+        )
+
+        bert_model.eval()
+
+        print("✅ BERT Loaded Successfully")
+
+    return tokenizer, bert_model
+
+# =====================================================
+# Load LSTM Only When Needed
+# =====================================================
+
+def get_lstm():
+
+    from tensorflow.keras.models import load_model
+
+    global lstm_model
+    global lstm_tokenizer
+
+    if lstm_model is None:
+
+        print("Loading Bi-LSTM Model...")
+
+        lstm_model = load_model(
+            "models/lstm_model.keras"
+        )
+
+        with open(
+            "models/lstm_tokenizer.pkl",
+            "rb"
+        ) as file:
+
+            lstm_tokenizer = pickle.load(file)
+
+        print("✅ Bi-LSTM Loaded Successfully")
+
+    return lstm_model, lstm_tokenizer
 
 
 # =====================================================
@@ -811,6 +840,9 @@ def predict_lstm(review):
 
 
     start_time = time.time()
+    
+    # Load LSTM only when needed
+    lstm_model, lstm_tokenizer = get_lstm()
 
 
 
@@ -987,63 +1019,40 @@ def predict_lstm(review):
 # BERT Prediction
 # =====================================================
 
-
 def predict_bert(review):
-
 
     start_time = time.time()
 
-
+    # Load BERT only when needed
+    tokenizer, bert_model = get_bert()
 
     inputs = tokenizer(
-
         review,
-
         return_tensors="pt",
-
         truncation=True,
-
         padding=True,
-
         max_length=128
-
     )
-
-
 
     with torch.no_grad():
 
-
         outputs = bert_model(**inputs)
 
-
-
-
     prediction_id = torch.argmax(
-
         outputs.logits,
-
         dim=1
-
     ).item()
 
-
-
     probabilities = F.softmax(
-
         outputs.logits,
-
         dim=1
-
     )
 
-
-
     confidence = torch.max(
-
         probabilities
+    ).item() * 100
 
-    ).item()*100
+    # Keep the rest of your existing code unchanged...
 
 
 
@@ -1171,69 +1180,46 @@ def predict_bert(review):
 @app.route("/", methods=["GET", "POST"])
 def home():
 
-
     prediction = ""
-
     review = ""
 
-
     bert_prediction = ""
-
     lstm_prediction = ""
 
-
     bert_confidence = 0
-
     lstm_confidence = 0
 
-
     bert_speed = 0
-
     lstm_speed = 0
 
-
-
     best_model = ""
-
     comparison_reason = ""
 
-
-
     recommendation_text = ""
-
     business_report = ""
-
     customer_issues = []
 
-
-
     total_reviews = 0
-
     positive_reviews = 0
-
     negative_reviews = []
-
-
 
     history = []
 
-
-
+    selected_model = "bert"
 
     if request.method == "POST":
-
-
 
         review = request.form.get(
             "review",
             ""
         )
 
-
+        selected_model = request.form.get(
+            "model_type",
+            "bert"
+        )
 
         if review.strip():
-
-
 
             # ---------------------------------
             # Detect Customer Issues
@@ -1243,375 +1229,232 @@ def home():
                 review
             )
 
-
-
-
             # ---------------------------------
-            # Run BERT Model
+            # Run Selected Model
             # ---------------------------------
 
-            bert_prediction, bert_confidence, bert_speed = predict_bert(
-                review
-            )
+            if selected_model == "bert":
 
+                bert_prediction, bert_confidence, bert_speed = predict_bert(
+                    review
+                )
 
+                sentiment_result = (
+                    bert_prediction
+                    .split("<br>")[0]
+                    .strip()
+                )
 
+                lstm_prediction = ""
+                lstm_confidence = 0
+                lstm_speed = 0
 
-            # ---------------------------------
-            # Run LSTM Model
-            # ---------------------------------
+            else:
 
-            lstm_prediction, lstm_confidence, lstm_speed = predict_lstm(
-                review
-            )
+                lstm_prediction, lstm_confidence, lstm_speed = predict_lstm(
+                    review
+                )
 
+                sentiment_result = (
+                    lstm_prediction
+                    .split("<br>")[0]
+                    .strip()
+                )
 
-
+                bert_prediction = ""
+                bert_confidence = 0
+                bert_speed = 0
 
             # ---------------------------------
             # Business Report
-            # (Fixed order)
             # ---------------------------------
 
-
-            sentiment_result = (
-                bert_prediction
-                .split("<br>")[0]
-                .strip()
-            )
-
-
-
             business_report = generate_business_report(
-
                 sentiment_result,
-
                 customer_issues
-
             )
-
-
-
-
 
             # ---------------------------------
             # Business Recommendation
             # ---------------------------------
 
-            recommendations = generate_recommendation(
-                review
-            )
-
-
+            recommendations = generate_recommendation(review)
 
             recommendation_text = (
-
                 "<br><br>"
                 "<b>💼 Business Recommendation</b>"
                 "<br>"
-
             )
 
-
-
             if recommendations:
-
 
                 for rec in recommendations:
 
                     recommendation_text += (
-
-                        "• "
-                        + rec
-                        + "<br>"
-
+                        "• " + rec + "<br>"
                     )
-
-
 
             else:
 
                 recommendation_text += (
-
                     "No recommendation generated."
-
-                )
-
-
-
-
-
-
+                )   
+                
+                
             # ---------------------------------
-            # Statistics
+            # Update Statistics
             # ---------------------------------
-
 
             stats = load_stats()
 
-
-
             stats["total_reviews"] += 1
 
-
-
-
-            if "Positive" in bert_prediction:
-
+            if "Positive" in sentiment_result:
 
                 stats["positive_reviews"] += 1
 
-
-
-
-            elif "Negative" in bert_prediction:
-
+            elif "Negative" in sentiment_result:
 
                 stats["negative_reviews"] += 1
 
-
-
-
-
             save_stats(stats)
-
-
-
-
-
 
             # ---------------------------------
             # Save History
             # ---------------------------------
 
-
             history = load_history()
-
-
 
             history.append({
 
-
                 "review": review,
 
+                "sentiment": sentiment_result,
 
-                "sentiment":
+                "confidence": round(
 
-                    bert_prediction
-                    .split("<br>")[0]
-                    .strip(),
+                    bert_confidence if selected_model == "bert"
+                    else lstm_confidence,
 
+                    2
 
-
-                "confidence":
-
-                    round(
-                        bert_confidence,
-                        2
-                    ),
-
-
+                ),
 
                 "model":
 
                     "BERT AI"
-
+                    if selected_model == "bert"
+                    else "Bi-LSTM AI"
 
             })
 
-
-
-
             save_history(history)
 
-
-
-
-
-
-
             # ---------------------------------
-            # Best Model Comparison
+            # Selected Model
             # ---------------------------------
 
+            if selected_model == "bert":
 
-            if bert_confidence >= lstm_confidence:
-
-
-                best_model = (
-                    "🏆 Best Model: BERT AI"
-                )
-
+                best_model = "🤖 Selected Model : BERT AI"
 
                 comparison_reason = (
-
-                    "BERT produced higher confidence."
-
+                    "Only the BERT model was executed."
                 )
-
-
 
             else:
 
-
-                best_model = (
-                    "🏆 Best Model: Bi-LSTM AI"
-                )
-
+                best_model = "🧠 Selected Model : Bi-LSTM AI"
 
                 comparison_reason = (
-
-                    "Bi-LSTM produced higher confidence."
-
+                    "Only the Bi-LSTM model was executed."
                 )
-
-
-
-
-
-
 
             # ---------------------------------
             # Display Prediction
             # ---------------------------------
 
+            if selected_model == "bert":
 
-            prediction = f"""
+                prediction = f"""
 
 <div class="model-card">
-
 
 <h2>
 🤖 BERT AI Model
 </h2>
 
-
 {bert_prediction}
-
 
 </div>
 
+"""
 
+            else:
 
+                prediction = f"""
 
 <div class="model-card">
-
 
 <h2>
 🧠 Bi-LSTM AI Model
 </h2>
 
-
 {lstm_prediction}
-
 
 </div>
 
-
 """
 
-
-
+    # =====================================================
     # Load Dashboard Data
-
+    # =====================================================
 
     stats = load_stats()
 
-
-
     total_reviews = stats["total_reviews"]
-
-
     positive_reviews = stats["positive_reviews"]
-
-
     negative_reviews = stats["negative_reviews"]
 
-
-
-
     history = load_history()
-
-
-
     history = history[-5:]
-
-
-
-
-
 
     return render_template(
 
         "dashboard.html",
 
-
         prediction=prediction,
-
 
         review=review,
 
-
-
         bert_prediction=bert_prediction,
-
         lstm_prediction=lstm_prediction,
 
-
-
         bert_confidence=bert_confidence,
-
         lstm_confidence=lstm_confidence,
 
-
-
         bert_speed=bert_speed,
-
         lstm_speed=lstm_speed,
 
-
-
         best_model=best_model,
-
-
         comparison_reason=comparison_reason,
 
-
-
         total_reviews=total_reviews,
-
-
         positive_reviews=positive_reviews,
-
-
         negative_reviews=negative_reviews,
-
-
 
         history=history,
 
-
-
         recommendation_text=recommendation_text,
-
-
 
         business_report=business_report,
 
-
         customer_issues=customer_issues
-
     )
-
-
-
-
-
-
+    
 # =====================================================
 # Run Application
 # =====================================================
-
 
 if __name__ == "__main__":
     import os
