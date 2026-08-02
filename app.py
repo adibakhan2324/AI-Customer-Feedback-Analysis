@@ -1,3 +1,5 @@
+from pydoc import text
+
 from flask import Flask, render_template, request
 import nltk
 import pickle
@@ -167,17 +169,19 @@ lstm_tokenizer = None
 
 def get_bert():
 
-    from transformers import (
-        BertTokenizer,
-        BertForSequenceClassification
-    )
-
     global tokenizer
     global bert_model
 
     if bert_model is None:
 
         print("Loading BERT Model...")
+
+        from transformers import (
+            BertTokenizer,
+            BertForSequenceClassification
+        )
+
+        HF_MODEL = "khanadiba263/customerpulse-bert-sentiment"
 
         tokenizer = BertTokenizer.from_pretrained(
             HF_MODEL
@@ -186,9 +190,8 @@ def get_bert():
         bert_model = BertForSequenceClassification.from_pretrained(
             HF_MODEL,
             torch_dtype=torch.float32
-       )
+        )
 
-        bert_model.to("cpu")
         bert_model.eval()
 
         print("✅ BERT Loaded Successfully")
@@ -212,9 +215,9 @@ def get_lstm():
         print("Loading Bi-LSTM Model...")
 
         lstm_model = load_model(
-            "models/lstm_model.h5",
+            "models/lstm_model.keras",
             compile=False
-       )
+        )
 
         with open(
             "models/lstm_tokenizer.pkl",
