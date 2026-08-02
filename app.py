@@ -41,6 +41,12 @@ from business_recommendation import generate_recommendation
 from customer_issue_detection import detect_customer_issues
 from business_report import generate_business_report
 
+# =====================================================
+# LSTM Model Variables
+# =====================================================
+
+lstm_model = None
+lstm_tokenizer = None
 
 # =====================================================
 # CustomerPulse AI
@@ -186,6 +192,7 @@ def get_bert():
 
     return tokenizer, bert_model
 
+
 # =====================================================
 # Load LSTM Only When Needed
 # =====================================================
@@ -202,7 +209,8 @@ def get_lstm():
         print("Loading Bi-LSTM Model...")
 
         lstm_model = load_model(
-            "models/lstm_model.keras"
+            "models/lstm_model.keras",
+            compile=False
         )
 
         with open(
@@ -215,7 +223,6 @@ def get_lstm():
         print("✅ Bi-LSTM Loaded Successfully")
 
     return lstm_model, lstm_tokenizer
-
 
 # =====================================================
 # NLP Tools
