@@ -1,10 +1,28 @@
 from flask import Flask, render_template, request
-
+import nltk
 import pickle
 import time
 import re
 import json
 import os
+
+
+# Download NLTK resources only if missing
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords", quiet=True)
+
+try:
+    nltk.data.find("corpora/wordnet")
+except LookupError:
+    nltk.download("wordnet", quiet=True)
+
+try:
+    nltk.data.find("corpora/omw-1.4")
+except LookupError:
+    nltk.download("omw-1.4", quiet=True)
+
 
 import torch
 import torch.nn.functional as F
