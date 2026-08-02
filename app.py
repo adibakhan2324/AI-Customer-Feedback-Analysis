@@ -167,6 +167,7 @@ lstm_tokenizer = None
 # Load BERT Only When Needed
 # =====================================================
 
+
 def get_bert():
 
     global tokenizer
@@ -188,8 +189,7 @@ def get_bert():
         )
 
         bert_model = BertForSequenceClassification.from_pretrained(
-            HF_MODEL,
-            torch_dtype=torch.float32
+            HF_MODEL
         )
 
         bert_model.eval()
@@ -197,7 +197,6 @@ def get_bert():
         print("✅ BERT Loaded Successfully")
 
     return tokenizer, bert_model
-
 
 # =====================================================
 # Load LSTM Only When Needed
