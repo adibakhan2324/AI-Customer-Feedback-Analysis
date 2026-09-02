@@ -411,13 +411,34 @@ Model prediction reliability
 
 <div class="info-card">
 
-<h3>⚠ Mixed Review Detection</h3>
+    <h3>⚠ Mixed Review Detection</h3>
 
-<p>
+    {% if mixed_review %}
 
-Complex reviews may contain both positive and negative opinions.
+        <p>
+            ⚠ <strong>Mixed / Complex Review Detected</strong>
+        </p>
 
-</p>
+        <p>
+            This review contains both positive and negative opinions
+            or contrasting language.
+        </p>
+
+        <p>
+            🔎 The prediction should be interpreted carefully.
+        </p>
+
+    {% else %}
+
+        <p>
+            ✅ No mixed sentiment detected.
+        </p>
+
+        <p>
+            The review appears to express a relatively clear opinion.
+        </p>
+
+    {% endif %}
 
 </div>
 

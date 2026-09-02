@@ -552,16 +552,11 @@ def analyze_language(review):
 # Detect Mixed / Complex Reviews
 # =====================================================
 
-
 def detect_complex_review(review):
-
 
     text = review.lower()
 
-
-
     positive_words = [
-
         "good",
         "great",
         "excellent",
@@ -582,13 +577,9 @@ def detect_complex_review(review):
         "helpful",
         "fast",
         "easy"
-
     ]
 
-
-
     negative_words = [
-
         "bad",
         "worst",
         "broken",
@@ -606,67 +597,36 @@ def detect_complex_review(review):
         "refund",
         "complaint",
         "unacceptable"
-
     ]
 
-
-
     positive = any(
-
         word in text
-
         for word in positive_words
-
     )
-
-
 
     negative = any(
-
         word in text
-
         for word in negative_words
-
     )
 
-
-
     contrast = any(
-
         word in text
-
         for word in [
-
             "but",
             "however",
             "although",
             "though",
             "yet"
-
         ]
-
     )
 
-
-
     if positive and negative:
-
         return True
-
-
 
     if contrast and (positive or negative):
-
         return True
 
-
-
     return False
-
-
-
-
-
 
 # =====================================================
 # Confidence Level
@@ -1216,6 +1176,11 @@ def home():
     prediction = ""
     review = ""
 
+    # ---------------------------------
+    # AI Language Analysis
+    # ---------------------------------
+    analysis_text = ""
+
     bert_prediction = ""
     lstm_prediction = ""
 
@@ -1230,15 +1195,23 @@ def home():
 
     recommendation_text = ""
     business_report = ""
+    business_impact = ""
+    mixed_review_text = ""
     customer_issues = []
+    
+    is_complex_review = False
 
     total_reviews = 0
     positive_reviews = 0
-    negative_reviews = []
+    negative_reviews = 0
 
     history = []
 
     selected_model = "bert"
+
+    # =====================================================
+    # Handle Review Submission
+    # =====================================================
 
     if request.method == "POST":
 
@@ -1261,6 +1234,36 @@ def home():
             customer_issues = detect_customer_issues(
                 review
             )
+            
+            # ---------------------------------
+            # Mixed / Complex Review Detection
+            # ---------------------------------
+
+            is_complex_review = detect_complex_review(review)
+
+            # ---------------------------------
+            # AI Language Analysis
+            # ---------------------------------
+
+            language_analysis = analyze_language(
+                review
+            )
+
+            if language_analysis:
+
+                analysis_text = ""
+
+                for item in language_analysis:
+
+                    analysis_text += (
+                        "• " + str(item) + "<br>"
+                    )
+
+            else:
+
+                analysis_text = (
+                    "No specific language patterns detected."
+                )
 
             # ---------------------------------
             # Run Selected Model
@@ -1306,12 +1309,15 @@ def home():
                 sentiment_result,
                 customer_issues
             )
-
+            
             # ---------------------------------
             # Business Recommendation
             # ---------------------------------
 
-            recommendations = generate_recommendation(review)
+            recommendations = generate_recommendation(
+                review,
+                sentiment_result
+            )
 
             recommendation_text = (
                 "<br><br>"
@@ -1331,9 +1337,67 @@ def home():
 
                 recommendation_text += (
                     "No recommendation generated."
-                )   
-                
-                
+                )
+                        
+            # ---------------------------------
+            # Business Impact
+            # ---------------------------------
+
+            if "Positive" in sentiment_result:
+
+                business_impact = (
+                    "<b>Business Impact:</b><br>"
+                    "• Strong customer satisfaction detected.<br>"
+                    "• Positive feedback can support customer retention and brand trust.<br>"
+                    "• Continue maintaining product quality and service standards."
+                )
+
+            elif "Negative" in sentiment_result:
+
+                business_impact = (
+                    "<b>Business Impact:</b><br>"
+                    "• Customer dissatisfaction may affect retention and brand perception.<br>"
+                    "• Immediate attention should be given to the reported problems.<br>"
+                    "• Improving product quality, delivery, and support can reduce negative feedback."
+                )
+
+            else:
+
+                business_impact = (
+                    "<b>Business Impact:</b><br>"
+                    "• Customer opinion is unclear or neutral.<br>"
+                    "• Monitor additional feedback before making major business decisions."
+                )
+
+            # ---------------------------------
+            # Business Recommendation
+            # ---------------------------------
+
+            recommendations = generate_recommendation(
+                review,
+                sentiment_result
+            )
+
+            recommendation_text = (
+                "<br><br>"
+                "<b>💼 Business Recommendation</b>"
+                "<br>"
+            )
+
+            if recommendations:
+
+                for rec in recommendations:
+
+                    recommendation_text += (
+                        "• " + str(rec) + "<br>"
+                    )
+
+            else:
+
+                recommendation_text += (
+                    "No recommendation generated."
+                )
+
             # ---------------------------------
             # Update Statistics
             # ---------------------------------
@@ -1366,7 +1430,8 @@ def home():
 
                 "confidence": round(
 
-                    bert_confidence if selected_model == "bert"
+                    bert_confidence
+                    if selected_model == "bert"
                     else lstm_confidence,
 
                     2
@@ -1389,7 +1454,9 @@ def home():
 
             if selected_model == "bert":
 
-                best_model = "🤖 Selected Model : BERT AI"
+                best_model = (
+                    "🤖 Selected Model : BERT AI"
+                )
 
                 comparison_reason = (
                     "Only the BERT model was executed."
@@ -1397,7 +1464,9 @@ def home():
 
             else:
 
-                best_model = "🧠 Selected Model : Bi-LSTM AI"
+                best_model = (
+                    "🧠 Selected Model : Bi-LSTM AI"
+                )
 
                 comparison_reason = (
                     "Only the Bi-LSTM model was executed."
@@ -1446,11 +1515,18 @@ def home():
     stats = load_stats()
 
     total_reviews = stats["total_reviews"]
+
     positive_reviews = stats["positive_reviews"]
+
     negative_reviews = stats["negative_reviews"]
 
     history = load_history()
+
     history = history[-5:]
+
+    # =====================================================
+    # Render Dashboard
+    # =====================================================
 
     return render_template(
 
@@ -1460,20 +1536,30 @@ def home():
 
         review=review,
 
+        # IMPORTANT:
+        # Send language analysis to dashboard.html
+        analysis_text=analysis_text,
+
         bert_prediction=bert_prediction,
+
         lstm_prediction=lstm_prediction,
 
         bert_confidence=bert_confidence,
+
         lstm_confidence=lstm_confidence,
 
         bert_speed=bert_speed,
+
         lstm_speed=lstm_speed,
 
         best_model=best_model,
+
         comparison_reason=comparison_reason,
 
         total_reviews=total_reviews,
+
         positive_reviews=positive_reviews,
+
         negative_reviews=negative_reviews,
 
         history=history,
@@ -1482,9 +1568,11 @@ def home():
 
         business_report=business_report,
 
-        customer_issues=customer_issues
+        customer_issues=customer_issues,
+        
+        is_complex_review=is_complex_review
     )
-    
+
 # =====================================================
 # Run Application
 # =====================================================
