@@ -1,557 +1,146 @@
-# 🤖 CustomerPulse AI
+# CustomerPulse AI
 
-# AI-Based Customer Feedback Analysis System for Business Decision Making
+## AI-Based Customer Feedback Analysis System for Business Decision Making
 
-<p align="center">
-<img src="screenshots/final_ai_dashboard.png" width="900">
-</p>
+CustomerPulse AI is a full-stack AI-powered web application designed to analyze customer feedback and convert unstructured reviews into meaningful insights for business decision-making.
 
-<p align="center">
-
-An intelligent NLP-based customer feedback analysis platform that uses Deep Learning models such as **BERT and Bi-LSTM** to understand customer opinions, detect issues, analyze sentiment, and generate AI-powered business recommendations.
-
-</p>
+The application combines Natural Language Processing, BERT, Bi-LSTM, sentiment analysis, customer issue detection, language analysis, business reporting, and recommendations in a single web-based platform.
 
 ---
 
-# 📌 Project Overview
+## Project Overview
 
-Customer feedback plays an important role in improving products and services. However, organizations receive thousands of reviews every day, making manual analysis difficult, time-consuming, and inefficient.
+Businesses receive large amounts of customer feedback through reviews, surveys, support channels, and other platforms. Manually analyzing this feedback can be time-consuming and makes it difficult to identify recurring problems and customer sentiment.
 
-**CustomerPulse AI** is an Artificial Intelligence and Natural Language Processing based system that automatically analyzes customer reviews and transforms unstructured feedback into meaningful business insights.
+CustomerPulse AI automates this process by analyzing customer feedback and providing structured results such as:
 
-The system performs:
+- Customer sentiment
+- Prediction confidence
+- Customer issues
+- Language patterns
+- Business insights
+- Recommendations
+- Analysis history
 
-- Sentiment classification
-- Customer issue detection
-- Language pattern analysis
-- AI-generated business reports
-- Recommendation generation
-- Interactive dashboard visualization
-
-The project helps businesses make faster and smarter decisions using AI-driven feedback analytics.
-
----
-
-# 🎯 Problem Statement
-
-Businesses collect large amounts of customer reviews from different platforms.
-
-Traditional manual analysis methods face problems such as:
-
-- Large volume of feedback
-- Slow decision-making
-- Difficulty identifying repeated complaints
-- Human bias in analysis
-- Lack of real-time insights
-
-Therefore, an automated AI system is required to analyze customer feedback efficiently and provide actionable insights.
+The project demonstrates the integration of Artificial Intelligence with full-stack web development to solve a practical business problem.
 
 ---
 
-# 💡 Project Motivation
+## Key Features
 
-The main motivation behind this project is to bridge the gap between:
+### AI-Powered Sentiment Analysis
 
-**Customer Opinions → AI Analysis → Business Decisions**
+Analyzes customer feedback and classifies it into:
 
-By applying Deep Learning and NLP techniques, businesses can understand:
+- Positive
+- Negative
+- Mixed
 
-- What customers like
-- What problems customers face
-- Why customers are dissatisfied
-- What improvements are required
+The system also provides prediction confidence information.
 
----
+### BERT-Based Analysis
 
-# 🎯 Objectives
+Uses a BERT-based NLP model to understand the contextual meaning of customer feedback and perform sentiment classification.
 
-The objectives of CustomerPulse AI are:
+### Bi-LSTM Analysis
 
-✔ Automatically analyze customer reviews using Artificial Intelligence
+Uses a Bidirectional Long Short-Term Memory model for sequence-based sentiment analysis.
 
-✔ Classify feedback into positive, negative, and mixed sentiment
+### Model Comparison
 
-✔ Compare transformer-based and sequential deep learning models
+The application supports comparison between BERT and Bi-LSTM approaches based on their prediction results and processing characteristics.
 
-✔ Detect important customer issues from reviews
+### Customer Issue Detection
 
-✔ Generate AI-based business recommendations
+Identifies common customer problems and concerns from feedback, such as:
 
-✔ Provide visual analytics for decision-making
+- Delivery problems
+- Customer support issues
+- Product quality concerns
+- Service-related problems
 
----
+### Language Analysis
 
-# ⭐ Key Features
+Analyzes customer feedback to identify important language patterns, keywords, emotional tone, and customer concerns.
 
-## 🧠 AI Sentiment Analysis
+### Business Reports
 
-The system predicts customer sentiment using Deep Learning models.
+Converts technical AI predictions into business-oriented information, including:
 
-Supported categories:
+- Sentiment summary
+- Detected issues
+- Business impact
+- Recommended actions
 
-😊 Positive Review
+### Business Recommendations
 
-😞 Negative Review
+Provides practical recommendations based on detected customer issues and sentiment.
 
-😐 Mixed Sentiment
+### Interactive Dashboard
 
+Provides a web interface for:
 
-The system provides:
-
-- Sentiment prediction
-- Confidence score
-- Confidence level
-- Model used
-
----
-
-# 🔍 Customer Issue Detection
-
-The AI system automatically identifies common customer problems.
-
-Detected issues include:
-
-🚚 Delivery Problems
-
-☎️ Customer Support Issues
-
-📦 Product Quality Problems
-
-💳 Service Related Issues
-
-
-This helps businesses understand the main reasons behind customer dissatisfaction.
+- Entering customer feedback
+- Selecting analysis methods
+- Viewing predictions
+- Viewing confidence information
+- Comparing models
+- Viewing business insights
+- Viewing recommendations
+- Checking analysis history
 
 ---
 
-# 🧠 AI Language Analysis
+## Problem Statement
 
-The system analyzes customer language patterns to identify:
+Businesses often receive large volumes of unstructured customer feedback.
 
-- Emotional tone
-- Important keywords
-- Complaint patterns
-- Customer concerns
+Manual analysis can lead to:
 
----
+- Time-consuming review processing
+- Difficulty identifying recurring complaints
+- Delayed decision-making
+- Difficulty understanding overall customer sentiment
+- Difficulty converting customer opinions into actionable business insights
 
-# 📊 AI Business Report Generation
-
-CustomerPulse AI automatically generates business reports containing:
-
-### Customer Sentiment Summary
-
-### Detected Issues
-
-### Business Impact
-
-### Recommended Actions
-
-
-Example:
-
-```
-Detected Issue:
-Delivery Delay
-
-Business Impact:
-Delayed delivery may reduce customer satisfaction.
-
-Recommended Action:
-Improve logistics management and delivery tracking.
-```
+CustomerPulse AI addresses these challenges by automating feedback analysis using Artificial Intelligence and Natural Language Processing.
 
 ---
 
-# 🏗️ System Architecture
+## Proposed Solution
 
-```
-              Customer Reviews
+CustomerPulse AI follows an end-to-end analysis workflow:
 
-                    |
-                    ↓
-
-          Data Preprocessing Layer
-
-                    |
-                    ↓
-
-          NLP Processing Pipeline
-
-                    |
-                    ↓
-
-        ┌─────────────────────┐
-        │                     │
-        ↓                     ↓
-
-      BERT Model          Bi-LSTM Model
-
-        │                     │
-        └──────────┬──────────┘
-
-                   ↓
-
-        Sentiment Classification
-
-                   ↓
-
+```text
+Customer Feedback
+       |
+       v
+Text Preprocessing
+       |
+       v
+NLP Processing
+       |
+       +----------------------+
+       |                      |
+       v                      v
+   BERT Model            Bi-LSTM Model
+       |                      |
+       +----------+-----------+
+                  |
+                  v
+        Sentiment Analysis
+                  |
+                  v
         Customer Issue Detection
-
-                   ↓
-
-        AI Business Report
-
-                   ↓
-
+                  |
+                  v
+          Language Analysis
+                  |
+                  v
+         Business Insights
+                  |
+                  v
+          Recommendations
+                  |
+                  v
         Interactive Dashboard
-```
-
----
-
-# 🔬 Deep Learning Models
-
-# 1. BERT Model
-
-## Bidirectional Encoder Representations from Transformers
-
-
-BERT is a transformer-based language model that understands the context of words by analyzing the complete sentence.
-
-### Advantages:
-
-- Better contextual understanding
-- Handles complex customer sentences
-- Improved sentiment classification
-
-
----
-
-# 2. Bi-LSTM Model
-
-## Bidirectional Long Short-Term Memory Network
-
-
-Bi-LSTM is a recurrent neural network that learns sequential patterns from customer feedback.
-
-### Advantages:
-
-- Captures word relationships
-- Learns review patterns
-- Effective for text classification
-
-
----
-
-# ⚖️ BERT vs Bi-LSTM Comparison
-
-| Feature | BERT | Bi-LSTM |
-|-|-|-|
-| Architecture | Transformer | Recurrent Neural Network |
-| Context Understanding | Very High | Medium |
-| Training Speed | Slower | Faster |
-| Memory Requirement | Higher | Lower |
-| Text Representation | Contextual Embedding | Sequential Learning |
-| Performance | High Accuracy | Competitive |
-
----
-
-# 📂 Dataset Information
-
-Dataset Used:
-
-## Women's Clothing E-Commerce Reviews Dataset
-
-
-The dataset contains customer reviews with information including:
-
-- Review text
-- Product information
-- Customer details
-- Ratings
-
-
-## Data Preprocessing Steps:
-
-1. Data cleaning
-
-2. Removing missing values
-
-3. Text normalization
-
-4. Tokenization
-
-5. Label preparation
-
-6. Model-ready data generation
-
-
----
-
-# ⚙️ Technology Stack
-
-
-## Programming Language
-
-- Python
-
-
-## Artificial Intelligence
-
-- BERT
-- Bi-LSTM
-- PyTorch
-- TensorFlow
-- Keras
-- Scikit-learn
-
-
-## Natural Language Processing
-
-- Hugging Face Transformers
-- Tokenization
-- Text preprocessing
-
-
-## Backend
-
-- Flask
-
-
-## Frontend
-
-- HTML
-- CSS
-- JavaScript
-
-
-## Visualization
-
-- Chart.js
-- Matplotlib
-
-
----
-
-# 📁 Project Structure
-
-```
-AI-Customer-Feedback-Analysis
-
-│
-├── app.py
-├── preprocessing.py
-├── bert_model.py
-├── lstm_model.py
-├── business_report.py
-├── business_recommendation.py
-├── customer_issue_detection.py
-├── language_rules.py
-│
-├── templates/
-│
-├── static/
-│
-├── screenshots/
-│
-└── requirements.txt
-
-```
-
----
-
-# 🖥️ Application Screenshots
-
-
-## 🏠 Home Dashboard
-
-![Home Dashboard](screenshots/home_dashboard.png)
-
-
-## 📝 Customer Review Input
-
-![Review Input](screenshots/review_input.png)
-
-
-## 🤖 Sentiment Analysis
-
-![Sentiment Analysis](screenshots/sentiment_analysis.png)
-
-
-## 😊 Positive Prediction
-
-![Positive Result](screenshots/sentiment_result_Positive.png)
-
-
-## 😞 Negative Prediction
-
-![Negative Result](screenshots/sentiment_result_Negative.png)
-
-
-## 😐 Mixed Sentiment
-
-![Mixed Sentiment](screenshots/mixed_sentiment.png)
-
-
-## 📈 Analytics Dashboard
-
-![Analytics](screenshots/analytics_dashboard.png)
-
-
-## ⚖️ Model Comparison
-
-![Model Comparison](screenshots/model_comparison.png)
-
-
-## 🎯 Confidence Score
-
-![Confidence](screenshots/confidence_score.png)
-
-
-## 📚 Review History
-
-![History](screenshots/review_history.png)
-
-
-## ℹ️ About Section
-
-![About](screenshots/about_section.png)
-
-
----
-
-# 🚀 Installation and Execution
-
-
-Clone repository:
-
-```bash
-git clone https://github.com/adibakhan2324/AI-Customer-Feedback-Analysis.git
-```
-
-
-Navigate:
-
-```bash
-cd AI-Customer-Feedback-Analysis
-```
-
-
-Create environment:
-
-```bash
-python -m venv .venv
-```
-
-
-Activate:
-
-```bash
-.venv\Scripts\activate
-```
-
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-
-Run application:
-
-```bash
-python app.py
-```
-
-
-Open:
-
-```
-http://127.0.0.1:5000
-```
-
----
-
-# 📈 Business Applications
-
-CustomerPulse AI can support:
-
-- E-commerce companies
-- Customer support departments
-- Product management teams
-- Market research organizations
-
-
-Applications:
-
-✔ Customer satisfaction monitoring
-
-✔ Complaint analysis
-
-✔ Product improvement
-
-✔ Service quality improvement
-
-✔ Business decision support
-
-
----
-
-# ⚠️ Limitations
-
-- Currently focused on English reviews
-- Performance depends on dataset quality
-- Requires retraining for different domains
-- Large AI models require computational resources
-
-
----
-
-# 🔮 Future Enhancements
-
-Future improvements include:
-
-- Real-time customer feedback monitoring
-- Multilingual sentiment analysis
-- Voice feedback analysis
-- Generative AI business assistant
-- Mobile application
-- Cloud deployment
-- Real-time dashboard integration
-
-
----
-
----
-
-# 📌 Repository Note
-
-This repository represents the complete implementation of the CustomerPulse AI system.
-
-Large files such as:
-- Trained deep learning model weights
-- Original datasets
-- Checkpoint files
-
-are excluded from the repository to maintain efficient version control and GitHub compatibility.
-
-The complete workflow, including preprocessing, model development, prediction pipeline, and dashboard implementation, is available through the provided source code.
-
----
-
-# 👩‍💻 Author
-
-## Adiba Khan
-
-B.Tech Computer Science Engineering
-
-
----
-
-# ⭐ Project Status
-
-✅ Completed
-
-Developed using Artificial Intelligence, Deep Learning, and Natural Language Processing for intelligent customer feedback analysis.
